@@ -2,6 +2,10 @@
 
 require 'functions.php';
 
-$heading = "Home";
+$uri = $_SERVER['REQUEST_URI'];
 
-require('views/index.view.php');
+if ($uri === '/') {
+    require 'controllers/index.php';
+} else if ($uri === '/products') {
+    require 'controllers/product.php';
+}
