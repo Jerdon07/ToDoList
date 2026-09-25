@@ -21,9 +21,9 @@
                         </a>
 
                         <a 
-                            href="/product.php" 
+                            href="/products" 
                             class="
-                                <?= urlIs('/product.php')
+                                <?= urlIs('/products')
                                     ? 'bg-purple-900 text-white' 
                                     : 'bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white' ?>
                                 px-3 py-2 rounded-md text-sm font-medium"
