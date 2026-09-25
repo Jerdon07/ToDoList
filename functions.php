@@ -12,3 +12,11 @@ function urlIs(mixed $uri): bool
 {
     return $_SERVER['REQUEST_URI'] === $uri;
 }
+
+function abort(int $code = 404) {
+    http_response_code($code);
+
+    require "views/{$code}.php";
+
+    die();
+}
