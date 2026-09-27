@@ -2,6 +2,7 @@
 
 use Request\RegistrationRequest;
 use util\App;
+use util\Auth;
 use util\Database;
 
 $name = $_POST['name'];
@@ -47,10 +48,16 @@ $db->query("INSERT INTO users(name, email, password) VALUES (:name, :email, :pas
     ':password' => password_hash($password, PASSWORD_BCRYPT),
 ]);
 
-$_SESSION['user'] = [
-    'id' => $_POST['id'],
-    'email' => $email,
-    'name' => $name,
-];
+$user = $db->query("SELECT * FROM users WHERE email = :email", [
+    ":email" => $email
+])->findOrFail();
+
+$auth = new Auth;
+
+$auth->login([
+    'id' => $user['id'],
+    'email' => $user['email'],
+    'name' => $user['name'],
+]);
 
 redirect('/');
