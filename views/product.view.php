@@ -4,7 +4,13 @@
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <p>Browse and Manage your products!</p>
+        <?php foreach ($products as $product) : ?>
+            <li>
+                <a href="product?id=<?= $product['id'] ?>" class="hover:underline">
+                    <?= $product['name'] ?>
+                </a>
+            </li>
+        <?php endforeach ?>
     </div>
 </main>
 <?php require 'partials/footer.php' ?>

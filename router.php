@@ -4,7 +4,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = [
     '/' => 'controllers/index.php',
-    '/products' => 'controllers/product.php'
+    '/products' => 'controllers/product.php',
+    '/product' => 'controllers/prod.php',
 ];
 
 function routeToController(string $uri, array $routes)
