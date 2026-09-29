@@ -5,5 +5,10 @@ require 'Database.php';
 $config = require 'config.php';
 
 $db = new Database($config['database']);
-$products = $db->query("SELECT * FROM products")->fetchAll();
+$id = $_GET['id'];
+
+$query = "SELECT * FROM products WHERE id = {$id}";
+$product = $db->query($query)->fetch();
+
+dd($product);
 require 'router.php';
