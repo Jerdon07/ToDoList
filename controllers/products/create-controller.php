@@ -1,10 +1,8 @@
 <?php
 
-require 'Validator.php';
+require base_path('Validator.php');
 
-$heading = "Add a product";
-
-$config = require "config.php";
+$config = require base_path("config.php");
 $db = new Database($config['database']);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -38,4 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 }
 
-require 'views/products/create.view.php';
+view('products/create.view.php', [
+    'heading' => 'Add a Product',
+]);

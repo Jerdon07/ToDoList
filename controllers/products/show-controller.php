@@ -1,6 +1,6 @@
 <?php
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
 $product = $db->query(
@@ -15,6 +15,7 @@ if (! $product) {
 $current_user = 3;
 authorize($product['user_id'] == $current_user, Response::FORBIDDEN);
 
-$heading = $product['name'];
-
-require 'views/products/show.view.php';
+view('products/show.view.php', [
+    'heading' => $product['name'],
+    'product' => $product,
+]);

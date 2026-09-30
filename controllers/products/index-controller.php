@@ -1,10 +1,11 @@
 <?php
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
-
-$heading = "My Products";
 
 $products = $db->query("SELECT * FROM products WHERE user_id = 3")->get();
 
-require 'views/products/index.view.php';
+view('products/index.view.php', [
+    'heading' => 'My Products',
+    'products' => $products,
+]);
