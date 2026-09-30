@@ -9,19 +9,17 @@ $db = new Database($config['database']);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $validator = new Validator();
-
     $errors = [];
 
-    if (! $validator->string($_POST['name'])) {
+    if (! Validator::string($_POST['name'])) {
         $errors['name'] = "A name with no more than 255 characters is required.";
     }
 
-    if (! $validator->int($_POST['price'])) {
+    if (! Validator::int($_POST['price'])) {
         $errors['price'] = "A product needs a valid price.";
     }
 
-    if (! $validator->int($_POST['quantity'])) {
+    if (! Validator::int($_POST['quantity'])) {
         $errors['quantity'] = "A product should have a valid quantity.";
     }
 
