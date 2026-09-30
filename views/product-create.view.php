@@ -38,6 +38,7 @@
                             name="price" 
                             id="price"
                             class="border rounded-sm"
+                            value="<?= $_POST['price'] ?? '' ?>"
                         >
                         <?php if(isset($errors['price'])) : ?>
                             <p class="text-xs text-red-500 font-semibold"><?= $errors['price'] ?></p>
@@ -54,6 +55,7 @@
                             name="quantity" 
                             id="quantity"
                             class="border rounded-sm"
+                            value="<?= $_POST['quantity'] ?? '' ?>"
                         >
                         <?php if(isset($errors['quantity'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['quantity'] ?></p>

@@ -1,5 +1,7 @@
 <?php
 
+require 'Validator.php';
+
 $heading = "Add a product";
 
 $config = require "config.php";
@@ -7,22 +9,20 @@ $db = new Database($config['database']);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    $validator = new Validator();
+
     $errors = [];
 
-    if (strlen($_POST['name']) === 0) {
-        $errors['name'] = "A product name is required.";
+    if (! $validator->string($_POST['name'])) {
+        $errors['name'] = "A name with no more than 255 characters is required.";
     }
 
-    if (strlen($_POST['name'] > 255)) {
-        $errors['name'] = "The name cannot be more than 255 characters.";
+    if (! $validator->int($_POST['price'])) {
+        $errors['price'] = "A product needs a valid price.";
     }
 
-    if (strlen($_POST['price']) === 0) {
-        $errors['price'] = "A product needs a price.";
-    }
-
-    if (strlen($_POST['quantity']) === 0) {
-        $errors['quantity'] = "A product should have a quantity.";
+    if (! $validator->int($_POST['quantity'])) {
+        $errors['quantity'] = "A product should have a valid quantity.";
     }
 
     if (empty($errors)) {
