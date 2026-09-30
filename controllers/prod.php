@@ -13,9 +13,7 @@ if (! $product) {
 }
 
 $current_user = 3;
-if ($product['user_id'] !== $current_user) {
-    abort(Response::FORBIDDEN);
-}
+authorize($product['user_id'] == $current_user, Response::FORBIDDEN);
 
 $heading = $product['name'];
 

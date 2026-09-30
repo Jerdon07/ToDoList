@@ -20,3 +20,11 @@ function abort(int $code = 404) {
 
     die();
 }
+
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    if (! $condition) {
+        abort($status);
+    }
+
+}
