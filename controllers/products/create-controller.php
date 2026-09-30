@@ -38,4 +38,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 }
 
-require 'views/product-create.view.php';
+require 'views/products/create.view.php';

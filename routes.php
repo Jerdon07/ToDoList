@@ -2,7 +2,7 @@
 
 return [
     '/' => 'controllers/index.php',
-    '/products' => 'controllers/product.php',
-    '/products/create' => 'controllers/product-create.php',
-    '/product' => 'controllers/prod.php',
+    '/products' =>          'controllers/products/index-controller.php',
+    '/products/create' =>   'controllers/products/create-controller.php',
+    '/product' =>           'controllers/products/show-controller.php',
 ];

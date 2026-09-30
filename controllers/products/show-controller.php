@@ -17,4 +17,4 @@ authorize($product['user_id'] == $current_user, Response::FORBIDDEN);
 
 $heading = $product['name'];
 
-require 'views/prod.view.php';
+require 'views/products/show.view.php';
