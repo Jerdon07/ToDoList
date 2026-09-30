@@ -23,12 +23,12 @@ class Database {
         return $this;
     }
 
-    public function find()
+    public function find(): mixed
     {
         return $this->statement->fetch();
     }
 
-    public function findOrFail()
+    public function findOrFail(): mixed
     {
         $result = $this->find();
 
@@ -39,7 +39,7 @@ class Database {
         return $result;
     }
 
-    public function get()
+    public function get(): array
     {
         return $this->statement->fetchAll();
     }
