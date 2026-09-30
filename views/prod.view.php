@@ -4,7 +4,7 @@
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <p><?= $product['name'] ?> is <?= $product['price'] ?> pesos.</p>
+        <p><?= htmlspecialchars($product['name']) ?> is <?= htmlspecialchars($product['price']) ?> pesos.</p>
     </div>
 </main>
 <?php require 'partials/footer.php' ?>

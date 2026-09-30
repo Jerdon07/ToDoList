@@ -14,7 +14,7 @@
             <?php foreach ($products as $product) : ?>
                 <li>
                     <a href="product?id=<?= $product['id'] ?>" class="hover:underline">
-                        <?= $product['name'] ?>
+                        <?= htmlspecialchars($product['name']) ?>
                     </a>
                 </li>
             <?php endforeach ?>
