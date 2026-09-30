@@ -9,12 +9,12 @@ $product = $db->query(
 )->fetch();
 
 if (! $product) {
-    abort();
+    abort(Response::NOT_FOUND);
 }
 
-if ($product['user_id'] !== 3) {
-    abort(403);
-    dd('Hello');
+$current_user = 3;
+if ($product['user_id'] !== $current_user) {
+    abort(Response::FORBIDDEN);
 }
 
 $heading = $product['name'];
