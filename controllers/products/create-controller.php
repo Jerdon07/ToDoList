@@ -5,9 +5,9 @@ require base_path('Validator.php');
 $config = require base_path("config.php");
 $db = new Database($config['database']);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+$errors = [];
 
-    $errors = [];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (! Validator::string($_POST['name'])) {
         $errors['name'] = "A name with no more than 255 characters is required.";
@@ -38,4 +38,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 view('products/create.view.php', [
     'heading' => 'Add a Product',
+    'errors' => $errors,
 ]);
