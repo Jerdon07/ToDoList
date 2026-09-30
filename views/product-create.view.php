@@ -18,6 +18,7 @@
                         name="name" 
                         type="text"
                         class="border rounded-sm pl-2"
+                        value="<?= $_POST['name'] ?? '' ?>"
                     >
                     <?php if(isset($errors['name'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['name'] ?></p>

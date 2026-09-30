@@ -13,6 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors['name'] = "A product name is required.";
     }
 
+    if (strlen($_POST['name'] > 255)) {
+        $errors['name'] = "The name cannot be more than 255 characters.";
+    }
+
     if (strlen($_POST['price']) === 0) {
         $errors['price'] = "A product needs a price.";
     }
