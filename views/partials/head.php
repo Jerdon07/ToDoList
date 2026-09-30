@@ -6,5 +6,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Document</title>
 </head>
-<body>
+<body class="bg-gray-100">
     <div class="min-h-full">

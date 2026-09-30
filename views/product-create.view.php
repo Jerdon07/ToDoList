@@ -4,49 +4,68 @@
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-        <form action="" method="POST">
-            <div>
-                <label for="name">Product Name</label>
-                <input 
-                    id="name" 
-                    name="name" 
-                    type="text"
-                    class="border rounded-sm"
-                >
-                <?php if(isset($errors['name'])) : ?>
-                    <p><?= $errors['name'] ?></p>
-                <?php endif ?>
-            </div>
+        <div class="w-170 px-6 py-4 bg-white rounded-md">
+            <form action="" method="POST" class="space-y-4">
 
-            <div>
-                <label for="price">Product Price</label>
-                <input 
-                    type="number" 
-                    name="price" 
-                    id="price"
-                    class="border rounded-sm"
-                >
-                <?php if(isset($errors['price'])) : ?>
-                    <p><?= $errors['price'] ?></p>
-                <?php endif ?>
-            </div>
+                <!-- Name -->
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm font-semibold">
+                        Product Name <span class="text-red-500">*</span>
+                    </label>
 
-            <div>
-                <label for="quantity">Product Quantity</label>
-                <input 
-                    type="number" 
-                    name="quantity" 
-                    id="quantity"
-                    class="border rounded-sm"
-                >
-                <?php if(isset($errors['quantity'])) : ?>
-                    <p><?= $errors['quantity'] ?></p>
-                <?php endif ?>
-            </div>
+                    <input 
+                        id="name" 
+                        name="name" 
+                        type="text"
+                        class="border rounded-sm pl-2"
+                    >
+                    <?php if(isset($errors['name'])) : ?>
+                        <p class="text-xs text-red-500 font-semibold"><?= $errors['name'] ?></p>
+                    <?php endif ?>
+                </div>
 
-            <!-- Submit Button -->
-            <input type="submit" value="Add Product" class="bg-purple-500 py-2 px-5 rounded-full text-white">
-        </form>
+                <!-- Integers -->
+                <div class="grid grid-cols-2 gap-4">  
+                    
+                        <!-- Price -->
+                    <div class="flex flex-col">
+                        <label for="price" class="text-sm font-semibold">
+                            Product Price <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            name="price" 
+                            id="price"
+                            class="border rounded-sm"
+                        >
+                        <?php if(isset($errors['price'])) : ?>
+                            <p class="text-xs text-red-500 font-semibold"><?= $errors['price'] ?></p>
+                        <?php endif ?>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="flex flex-col">
+                        <label for="quantity" class="text-sm font-semibold">
+                            Product Quantity <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            name="quantity" 
+                            id="quantity"
+                            class="border rounded-sm"
+                        >
+                        <?php if(isset($errors['quantity'])) : ?>
+                        <p class="text-xs text-red-500 font-semibold"><?= $errors['quantity'] ?></p>
+                        <?php endif ?>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                 <div class="flex w-full h-fit items-end justify-end">
+                     <input type="submit" value="Add Product" class="bg-purple-500 py-2 px-5 rounded-full text-white hover:bg-purple-700">
+                 </div>
+            </form>
+        </div>
     </div>
 </main>
 <?php require 'partials/footer.php' ?>
