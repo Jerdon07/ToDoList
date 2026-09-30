@@ -6,7 +6,7 @@ $db = new Database($config['database']);
 $product = $db->query(
     "SELECT * FROM products WHERE id = :id", 
     [":id" => $_GET['id']]
-)->fetch();
+)->findOrFail();
 
 if (! $product) {
     abort(Response::NOT_FOUND);
