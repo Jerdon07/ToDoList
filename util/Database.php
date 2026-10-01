@@ -1,5 +1,10 @@
 <?php
 
+namespace util;
+
+use PDO;
+use PDOStatement;
+
 class Database {
 
     public PDO $connection;

@@ -1,5 +1,7 @@
 <?php
 
+namespace util;
+
 class Validator {
 
     public static function string(string $value, int $min = 2, int $max = 255): bool
