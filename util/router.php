@@ -1,12 +1,12 @@
 <?php
 
-$routes = require "routes.php";
+$routes = require base_path("routes.php");
 
 
 function routeToController(string $uri, array $routes)
 {
     if (array_key_exists($uri, $routes)) {
-        require $routes[$uri];
+        require base_path($routes[$uri]);
     } else {
         abort();
     }
