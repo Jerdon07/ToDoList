@@ -1,8 +1,15 @@
 <?php
 
-return [
-    '/' => 'controllers/index.php',
-    '/products' =>          'controllers/products/index-controller.php',
-    '/products/create' =>   'controllers/products/create-controller.php',
-    '/product' =>           'controllers/products/show-controller.php',
-];
+use util\Router;
+
+$router = new Router;
+
+$router->get('/', 'controllers/index.php');
+
+$router->get('/products', 'controllers/products/index-controller.php');
+
+$router->get('/products/create', 'controllers/products/create-controller.php');
+$router->post('/products/create', 'controllers/products/create-controller.php');
+
+$router->get('/product', 'controllers/products/show-controller.php');
+$router->delete('/product', 'controllers/products/show-controller.php');

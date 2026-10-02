@@ -8,10 +8,10 @@
         <div class="h-12 w-full flex justify-end items-end">
             <form method="POST">
                 <input 
-                    type="hidden"
-                    name="id"
-                    value="<?= $product['id'] ?>"
+                    type="hidden" name="id" value="<?= $product['id'] ?>"
                 >
+
+                <input type="hidden" name="_method" value="DELETE">
 
                 <button
                     class="w-fit px-4 py-2 rounded-full flex items-center justify-center bg-red-600 text-white font-bold hover:bg-red-700"
