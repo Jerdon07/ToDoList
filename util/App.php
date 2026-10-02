@@ -15,4 +15,14 @@ class App
     {
         return static::$container;
     }
+
+    public static function bind(string $key)
+    {
+        static::container()->bind($key);
+    }
+
+    public static function resolve(string $key)
+    {
+        return static::container()->resolve($key);
+    }
 }

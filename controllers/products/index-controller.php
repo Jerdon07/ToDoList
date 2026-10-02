@@ -3,7 +3,7 @@
 use util\App;
 use util\Database;
 
-$db = App::container()->resolve(Database::class);
+$db = App::resolve(Database::class);
 
 $products = $db->query("SELECT * FROM products WHERE user_id = 3")->get();
 
