@@ -6,7 +6,7 @@
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <!-- Delete -->
         <div class="h-12 w-full flex justify-end items-end">
-            <form method="POST">
+            <form action="" method="POST">
                 <input 
                     type="hidden" name="id" value="<?= $product['id'] ?>"
                 >
