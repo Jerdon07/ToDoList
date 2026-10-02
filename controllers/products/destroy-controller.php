@@ -1,10 +1,10 @@
 <?php
 
+use util\App;
 use util\Database;
 use util\Response;
 
-$config = require base_path('config.php');
-$db = new Database($config['database']);
+$db = App::container()->resolve(Database::class);
 
 $current_user = 3;
 
