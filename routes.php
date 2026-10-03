@@ -4,6 +4,11 @@ use util\Router;
 
 $router = new Router;
 
+/* Registration */
+$router->get('/register', 'controllers/registration/create-controller.php');
+$router->post('/register', 'controllers/registration/store-controller.php');
+
+/* Product */
 $router->get('/', 'controllers/index.php');
 
 $router->get('/products', 'controllers/products/index-controller.php');
