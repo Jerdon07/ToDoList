@@ -58,8 +58,8 @@ $db->query("INSERT INTO users(name, email, password) VALUES (:name, :email, :pas
 
 $_SESSION['user'] = [
     'email' => $email,
+    'name' => $name,
 ];
 
-view('registration/create.view.php', [
-    'heading' => 'Register'
-]);
+header('location: /');
+exit();

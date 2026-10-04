@@ -5,8 +5,8 @@ use util\Router;
 $router = new Router;
 
 /* Registration */
-$router->get('/register', 'controllers/registration/create-controller.php');
-$router->post('/register', 'controllers/registration/store-controller.php');
+$router->get('/register', 'controllers/registration/create-controller.php')->only('guest');
+$router->post('/register', 'controllers/registration/store-controller.php')->only('guest');
 
 /* Product */
 $router->get('/', 'controllers/index.php');
