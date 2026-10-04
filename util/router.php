@@ -4,6 +4,7 @@ namespace util;
 
 use Middleware\Auth;
 use Middleware\Guest;
+use Middleware\Middleware;
 
 class Router {
 
@@ -63,12 +64,10 @@ class Router {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
 
                 /* Apply the middleware */
-                if ($route['middleware'] === 'guest') {
-                    Guest::handle();
-                }
-
-                if ($route['middleware'] === 'auth') {
-                    Auth::handle();
+                if (isset($route['middleware'])) {
+                    $middleware = Middleware::MAP[$route['middleware']];
+                    
+                    (new $middleware)->handle();
                 }
                 
                 return require base_path($route['controller']);

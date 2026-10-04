@@ -4,7 +4,7 @@ namespace Middleware;
 
 class Auth
 {
-    public static function handle()
+    public function handle()
     {
         if (empty($_SESSION['user'])) {
             header('location: /register');

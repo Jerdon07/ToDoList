@@ -4,7 +4,7 @@ namespace Middleware;
 
 class Guest
 {
-    public static function handle()
+    public function handle()
     {
         if (isset($_SESSION['user'])) {
             header('location: /');
