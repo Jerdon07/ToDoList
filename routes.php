@@ -11,14 +11,14 @@ $router->post('/register', 'controllers/registration/store-controller.php')->onl
 /* Product */
 $router->get('/', 'controllers/index.php');
 
-$router->get('/products', 'controllers/products/index-controller.php');
+$router->get('/products', 'controllers/products/index-controller.php')->only('auth');
 
-$router->get('/products/create', 'controllers/products/create-controller.php');
-$router->post('/products/create', 'controllers/products/store-controller.php');
+$router->get('/products/create', 'controllers/products/create-controller.php')->only('auth');
+$router->post('/products/create', 'controllers/products/store-controller.php')->only('auth');
 
-$router->get('/product', 'controllers/products/show-controller.php');
+$router->get('/product', 'controllers/products/show-controller.php')->only('auth');
 
-$router->get('/product/edit', 'controllers/products/edit-controller.php');
-$router->put('/product/edit', 'controllers/products/update-controller.php');
+$router->get('/product/edit', 'controllers/products/edit-controller.php')->only('auth');
+$router->put('/product/edit', 'controllers/products/update-controller.php')->only('auth');
 
-$router->delete('/product', 'controllers/products/destroy-controller.php');
+$router->delete('/product', 'controllers/products/destroy-controller.php')->only('auth');

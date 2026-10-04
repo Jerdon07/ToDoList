@@ -64,6 +64,11 @@ class Router {
                     header('location: /');
                     exit();
                 }
+
+                if ($route['middleware'] === 'auth' && (! $_SESSION['user'])) {
+                    header('location: /register');
+                    exit();
+                }
                 
                 return require base_path($route['controller']);
             }    

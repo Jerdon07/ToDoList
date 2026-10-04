@@ -22,16 +22,18 @@
                                 Home
                             </a>
 
-                            <a 
-                                href="/products" 
-                                class="
-                                    <?= urlIs('/products')
-                                        ? 'bg-purple-900 text-white' 
-                                        : 'bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white' ?>
-                                    px-3 py-2 rounded-md text-sm font-medium"
-                            >
-                                Products
-                            </a>
+                            <?php if(isset($_SESSION['user'])) : ?>
+                                <a 
+                                    href="/products" 
+                                    class="
+                                        <?= urlIs('/products')
+                                            ? 'bg-purple-900 text-white' 
+                                            : 'bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white' ?>
+                                        px-3 py-2 rounded-md text-sm font-medium"
+                                >
+                                    Products
+                                </a>
+                            <?php endif ?>
                         </div>
 
                         <!-- Auth -->
