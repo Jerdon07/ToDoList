@@ -2,6 +2,9 @@
 
 namespace util;
 
+use Middleware\Auth;
+use Middleware\Guest;
+
 class Router {
 
     /* Store/cache all registered routes */
@@ -60,14 +63,12 @@ class Router {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
 
                 /* Apply the middleware */
-                if ($route['middleware'] === 'guest' && ($_SESSION['user'] ?? false)) {
-                    header('location: /');
-                    exit();
+                if ($route['middleware'] === 'guest') {
+                    Guest::handle();
                 }
 
-                if ($route['middleware'] === 'auth' && (! $_SESSION['user'])) {
-                    header('location: /register');
-                    exit();
+                if ($route['middleware'] === 'auth') {
+                    Auth::handle();
                 }
                 
                 return require base_path($route['controller']);
