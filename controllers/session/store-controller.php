@@ -34,8 +34,8 @@ $user = $db->query(
     ]
 )->find();
 
-if (empty($user)) {
-    $errors['email'] = "There's no user associated with this email.";
+if (empty($user) || !password_verify($password, $user['password'])) {
+    $errors['email'] = "No matching account found for that email address and password";
 
     view('session/create.view.php', [
         'heading' => 'Login',
@@ -43,17 +43,6 @@ if (empty($user)) {
     ]);
 
     die();
-}
-
-if (! password_verify($password, $user['password'])) {
-    $errors['password'] = "The password doesn't match.";
-
-    view('session/create.view.php', [
-        'heading' => 'Login',
-        'errors' => $errors,
-    ]);
-
-    exit();
 }
 
 login([
