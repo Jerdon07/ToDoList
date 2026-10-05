@@ -1,30 +1,25 @@
 <?php
 
+use Request\LoginRequest;
 use util\App;
 use util\Database;
-use util\Validator;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 $errors = [];
 
-if (! Validator::email($email)) {
-    $errors['email'] = "A valid email is required";
-}
+$request = new LoginRequest;
 
-if (! Validator::string($password)) {
-    $errors['password'] = "A password with no more than 255 characters is required.";
-}
-
-if (! empty($errors)) {
-    view('session/create.view.php', [
-        'heading' => 'Register',
-        'errors' => $errors,
+/* Validate the request */
+if (! $request->validate($email, $password)) {
+    return view('session/create.view.php', [
+        'heading' => 'Log In',
+        'errors' => $request->errors(),
     ]);
 
-    die();
-}
+    exit();
+};
 
 $db = App::resolve(Database::class);
 
