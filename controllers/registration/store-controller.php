@@ -1,8 +1,8 @@
 <?php
 
+use Request\RegistrationRequest;
 use util\App;
 use util\Database;
-use util\Validator;
 
 $name = $_POST['name'];
 $email = $_POST['email'];
@@ -10,22 +10,13 @@ $password = $_POST['password'];
 
 $errors = [];
 
-if (! Validator::string($name)) {
-    $errors['name'] = "A name with no more than 255 characters is required.";
-}
+$request = new RegistrationRequest;
 
-if (! Validator::email($email)) {
-    $errors['email'] = "A valid email is required";
-}
-
-if (! Validator::string($password, 8)) {
-    $errors['password'] = "A password with no more than 255 characters is required.";
-}
-
-if (! empty($errors)) {
+/* Validate the request */
+if (! $request->validate($name, $email, $password)) {
     view('registration/create.view.php', [
         'heading' => 'Register',
-        'errors' => $errors,
+        'errors' => $request->errors(),
     ]);
 
     die();
