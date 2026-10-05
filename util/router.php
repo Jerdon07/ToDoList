@@ -64,7 +64,7 @@ class Router {
                 /* Apply the middleware */
                 Middleware::resolve($route['middleware']);
                 
-                return require base_path($route['controller']);
+                return require base_path('controllers/' . $route['controller']);
             }    
         }
 
