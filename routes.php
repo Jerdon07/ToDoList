@@ -11,6 +11,7 @@ $router->post('/register', 'controllers/registration/store-controller.php')->onl
 /* Login */
 $router->get('/login', 'controllers/session/create-controller.php')->only('guest');
 $router->post('/sessions', 'controllers/session/store-controller.php')->only('guest');
+$router->delete('/sessions', 'controllers/session/delete-controller.php')->only('auth');
 
 /* Product */
 $router->get('/', 'controllers/index.php');

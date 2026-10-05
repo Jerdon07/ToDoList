@@ -38,7 +38,16 @@
 
                         <!-- Auth -->
                          <?php if ($_SESSION['user'] ?? false) : ?>
-                            <p>Logout</p>
+                            <form action="/sessions" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button
+                                    type="submit"
+                                    class="bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                                >
+                                    Log Out
+                                </button>
+                            </form>
                         <?php else : ?>
                             <div class="flex justify-between items-center space-x-4">
                                 <a 
