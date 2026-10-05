@@ -8,6 +8,10 @@ $router = new Router;
 $router->get('/register', 'controllers/registration/create-controller.php')->only('guest');
 $router->post('/register', 'controllers/registration/store-controller.php')->only('guest');
 
+/* Login */
+$router->get('/login', 'controllers/session/create-controller.php')->only('guest');
+$router->post('/sessions', 'controllers/session/store-controller.php')->only('guest');
+
 /* Product */
 $router->get('/', 'controllers/index.php');
 
