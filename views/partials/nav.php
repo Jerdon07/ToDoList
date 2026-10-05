@@ -38,9 +38,31 @@
 
                         <!-- Auth -->
                          <?php if ($_SESSION['user'] ?? false) : ?>
-                            <p>User</p>
+                            <p>Logout</p>
                         <?php else : ?>
-                            <p>Guest</p>
+                            <div class="flex justify-between items-center space-x-4">
+                                <a 
+                                    href="/login"
+                                    class="
+                                        <?= urlIs('/login')
+                                            ? 'bg-purple-900 text-white' 
+                                            : 'bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white' ?>
+                                        px-3 py-2 rounded-md text-sm font-medium"
+                                >
+                                    Login
+                                </a>
+
+                                <a 
+                                    href="/register"
+                                    class="
+                                        <?= urlIs('/register')
+                                            ? 'bg-purple-900 text-white' 
+                                            : 'bg-purple-700 text-purple-200 hover:bg-purple-700 hover-text-white' ?>
+                                        px-3 py-2 rounded-md text-sm font-medium"
+                                >
+                                    Register
+                                </a>
+                            </div>
                         <?php endif ?>
                     </div>
                 </div>
