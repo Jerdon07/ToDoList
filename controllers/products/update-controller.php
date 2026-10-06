@@ -8,8 +8,6 @@ use util\Validator;
 
 $db = App::resolve(Database::class);
 
-$current_user = 18;
-
 $id = $_POST['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];
@@ -19,7 +17,7 @@ if (! $id) {
     abort(Response::NOT_FOUND);
 }
 
-authorize($_POST['user_id'] == $current_user, Response::FORBIDDEN);
+authorize($_POST['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
 
 $product = $db->query("SELECT * FROM products WHERE id = :id", [
     ':id' => $id,
@@ -27,7 +25,7 @@ $product = $db->query("SELECT * FROM products WHERE id = :id", [
 
 $request = new ProductRequest;
 
-if (! empty($request->validate($name, $price, $quantity))) {
+if (! $request->validate($name, $price, $quantity)) {
 
     return view('products/edit.view.php', [
         'heading' => 'Edit Product',

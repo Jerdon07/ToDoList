@@ -6,8 +6,6 @@ use util\Response;
 
 $db = App::resolve(Database::class);
 
-$current_user = 3;
-
 $product = $db->query(
     "SELECT * FROM products WHERE id = :id", 
     [":id" => $_GET['id']]
@@ -17,7 +15,7 @@ if (! $product) {
     abort(Response::NOT_FOUND);
 }
 
-authorize($product['user_id'] == $current_user, Response::FORBIDDEN);
+authorize($product['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
 
 view('products/show.view.php', [
     'heading' => $product['name'],

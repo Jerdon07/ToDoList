@@ -17,7 +17,7 @@ class ProductRequest
             $this->errors['name'] = "A name with no more than 255 characters is required.";
         }
 
-        if (! Validator::int($price, 1, 2)) {
+        if (! Validator::int($price, 1)) {
             $this->errors['price'] = "A product needs a valid price.";
         }
 

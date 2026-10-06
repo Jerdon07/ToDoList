@@ -41,7 +41,7 @@ if (empty($user) || !password_verify($password, $user['password'])) {
 }
 
 login([
-    'id' => $_POST['id'],
+    'id' => $user['id'],
     'email' => $email,
     'name' => $user['name'],
 ]);
