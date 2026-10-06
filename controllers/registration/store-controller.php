@@ -48,6 +48,7 @@ $db->query("INSERT INTO users(name, email, password) VALUES (:name, :email, :pas
 ]);
 
 $_SESSION['user'] = [
+    'id' => $_POST['id'],
     'email' => $email,
     'name' => $name,
 ];
