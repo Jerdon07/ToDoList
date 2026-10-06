@@ -1,6 +1,8 @@
 <?php
 
-logout();
+use util\Auth;
+
+Auth::logout();
 
 header('location: /');
 

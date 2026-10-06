@@ -2,6 +2,7 @@
 
 use Request\LoginRequest;
 use util\App;
+use util\Auth;
 use util\Database;
 
 $email = $_POST['email'];
@@ -23,28 +24,16 @@ if (! $request->validate($email, $password)) {
 
 $db = App::resolve(Database::class);
 
-$user = $db->query(
-    "SELECT * FROM users WHERE email = :email", [
-        ':email' => $email,
-    ]
-)->find();
+$auth = new Auth();
 
-if (empty($user) || !password_verify($password, $user['password'])) {
-    $errors['email'] = "No matching account found for that email address and password";
 
-    view('session/create.view.php', [
+
+if (! $auth->handle($email, $password)) {
+    return view('session/create.view.php', [
         'heading' => 'Login',
-        'errors' => $errors,
+        'errors' => ['email' => 'No matching account for that email address and password.']
     ]);
-
-    die();
 }
-
-login([
-    'id' => $user['id'],
-    'email' => $email,
-    'name' => $user['name'],
-]);
 
 header('location: /');
 
