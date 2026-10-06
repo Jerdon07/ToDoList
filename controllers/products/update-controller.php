@@ -1,5 +1,6 @@
 <?php
 
+use Request\ProductRequest;
 use util\App;
 use util\Database;
 use util\Response;
@@ -7,46 +8,40 @@ use util\Validator;
 
 $db = App::resolve(Database::class);
 
-$current_user = 3;
+$current_user = 18;
 
-if (! $_POST['id']) {
+$id = $_POST['id'];
+$name = $_POST['name'];
+$price = $_POST['price'];
+$quantity = $_POST['quantity'];
+
+if (! $id) {
     abort(Response::NOT_FOUND);
 }
 
 authorize($_POST['user_id'] == $current_user, Response::FORBIDDEN);
 
 $product = $db->query("SELECT * FROM products WHERE id = :id", [
-    ':id' => $_POST['id'],
+    ':id' => $id,
 ])->findOrFail();
 
-$errors = [];
+$request = new ProductRequest;
 
-if (! Validator::string($_POST['name'])) {
-    $errors['name'] = "A name with no more than 255 characters is required.";
-}
+if (! empty($request->validate($name, $price, $quantity))) {
 
-if (! Validator::int($_POST['price'])) {
-    $errors['price'] = "A product needs a valid price.";
-}
-
-if (! Validator::int($_POST['quantity'])) {
-    $errors['quantity'] = "A product should have a valid quantity.";
-}
-
-if (count($errors)) {
     return view('products/edit.view.php', [
         'heading' => 'Edit Product',
         'product' => $product,
-        'errors' => $errors,
+        'errors' => $request->errors(),
     ]);
 }
 
 $product = $db->query(
     "UPDATE products SET name = :name, price = :price, quantity = :quantity WHERE id = :id", [
-        ":id" => $_POST['id'],
-        ":name" => $_POST['name'],
-        ":price" => $_POST['price'],
-        ":quantity" => $_POST['quantity'],
+        ":id" => $id,
+        ":name" => $name,
+        ":price" => $price,
+        ":quantity" => $quantity,
     ]
 );
 

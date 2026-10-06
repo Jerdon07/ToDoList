@@ -1,41 +1,33 @@
 <?php
 
+use Request\ProductRequest;
 use util\App;
 use util\Database;
-use util\Validator;
 
 $db = App::resolve(Database::class);
 
-$errors = [];
+$name = $_POST['name'];
+$price = $_POST['price'];
+$quantity = $_POST['quantity'];
 
-if (! Validator::string($_POST['name'])) {
-    $errors['name'] = "A name with no more than 255 characters is required.";
-}
+$request = new ProductRequest;
 
-if (! Validator::int($_POST['price'])) {
-    $errors['price'] = "A product needs a valid price.";
-}
-
-if (! Validator::int($_POST['quantity'])) {
-    $errors['quantity'] = "A product should have a valid quantity.";
-}
-
-if (! empty($errors)) {
+if (! $request->validate($name, $price, $quantity)) {
     view('products/create.view.php', [
         'heading' => 'Add a Product',
-        'errors' => $errors,
+        'errors' => $request->errors(),
     ]);
 
-    die();
+    exit();
 }
 
-$current_user = 3;
+$current_user = 18;
 $db->query(
     "INSERT INTO products(name, price, quantity, user_id) VALUES(:name, :price, :quantity, :user_id)",
     [
-        ":name" => $_POST["name"],
-        ":price" => $_POST["price"],
-        ":quantity" => $_POST["quantity"],
+        ":name" => $name,
+        ":price" => $price,
+        ":quantity" => $quantity,
         ":user_id" => $current_user,
     ]
 );
