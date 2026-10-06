@@ -4,8 +4,12 @@ namespace util;
 
 class Auth
 {
+    /**
+     * Handle user authenticaion
+     */
     public function handle(string $email, string $password): bool
     {
+        // Find if email exists
         $user = App::resolve(Database::class)
             ->query("SELECT * FROM users WHERE email = :email", [
                 ':email' => $email,
@@ -15,6 +19,7 @@ class Auth
             return false;
         }
 
+        // Log the user
         $this->login($user);
 
         return true;

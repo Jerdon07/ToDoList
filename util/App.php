@@ -4,13 +4,20 @@ namespace util;
 
 class App
 {
-    private static object $container;
+    /* Container initialization */
+    private static Container $container;
 
-    public static function setContainer(object $container)
+    /**
+     * Set the container
+     */
+    public static function setContainer(Container $container)
     {
         static::$container = $container;
     }
 
+    /**
+     * Getter function to call the container
+     */
     public static function container()
     {
         return static::$container;

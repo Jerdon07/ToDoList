@@ -4,7 +4,6 @@ use Request\ProductRequest;
 use util\App;
 use util\Database;
 use util\Response;
-use util\Validator;
 
 $db = App::resolve(Database::class);
 

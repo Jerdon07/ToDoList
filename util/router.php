@@ -9,6 +9,9 @@ class Router {
     /* Store/cache all registered routes */
     private $routes = [];
 
+    /**
+     * Add a route
+     */
     private function add(string $uri, string $controller, string $method): Router
     {
         $this->routes[] = [
@@ -21,31 +24,49 @@ class Router {
         return $this;
     }
 
+    /**
+     * Add a route with GET method
+     */
     public function get(string $uri,string $controller): Router
     {
         return $this->add($uri, $controller, 'GET');
     }
 
+    /**
+     * Add a route with POST method
+     */
     public function post(string $uri,string $controller): Router
     {
         return $this->add($uri, $controller, 'POST');
     }
 
+    /**
+     * Add a route with PUT method
+     */
     public function put(string $uri,string $controller): Router
     {
         return $this->add($uri, $controller, 'PUT');
     }
 
+    /**
+     * Add a route with PATCH method
+     */
     public function patch(string $uri,string $controller): Router
     {
         return $this->add($uri, $controller, 'PATCH');
     }
 
+    /**
+     * Add a route with DELETE method
+     */
     public function delete(string $uri,string $controller): Router
     {
         return $this->add($uri, $controller, 'DELETE');
     }
 
+    /**
+     * Create a middleware for exclusive route
+     */
     public function only(string $key): Router
     {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;

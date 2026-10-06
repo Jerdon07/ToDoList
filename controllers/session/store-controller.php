@@ -1,9 +1,7 @@
 <?php
 
 use Request\LoginRequest;
-use util\App;
 use util\Auth;
-use util\Database;
 
 $email = $_POST['email'];
 $password = $_POST['password'];

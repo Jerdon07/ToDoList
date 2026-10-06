@@ -9,6 +9,8 @@ $products = $db->query("SELECT * FROM products WHERE user_id = :user_id", [
     ':user_id' => $_SESSION['user']['id'],
 ])->get();
 
+dd($_SESSION['user']['id']);
+
 view('products/index.view.php', [
     'heading' => 'My Products',
     'products' => $products,

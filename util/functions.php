@@ -2,19 +2,28 @@
 
 use util\Response;
 
+/**
+ * Dump the value and terminate the current script
+ */
 function dd(mixed $value): NULL 
 {
     echo '<pre>';
     var_dump($value);
     echo '</pre>';
-    die();
+    exit();
 }
 
+/**
+ * Check for the current URI
+ */
 function urlIs(mixed $uri): bool 
 {
     return $_SERVER['REQUEST_URI'] === $uri;
 }
 
+/**
+ * End the script and return view
+ */
 function abort(int $code = 404) {
     http_response_code($code);
 
@@ -23,7 +32,10 @@ function abort(int $code = 404) {
     die();
 }
 
-function authorize($condition, $status = Response::FORBIDDEN)
+/**
+ * Check if the condition is true, else abort
+ */
+function authorize(bool $condition, int $status = Response::FORBIDDEN)
 {
     if (! $condition) {
         abort($status);
