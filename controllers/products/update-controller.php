@@ -43,5 +43,4 @@ $product = $db->query(
     ]
 );
 
-header('location: /products');
-die();
+redirect('/products');

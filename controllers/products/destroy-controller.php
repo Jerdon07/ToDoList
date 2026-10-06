@@ -18,6 +18,4 @@ $db->query(
     [":id" => $_POST['id']],
 );
 
-header('location: /products');
-
-exit();
+redirect('/products');

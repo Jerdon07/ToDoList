@@ -48,3 +48,12 @@ function view(string $path, array $attributes = [])
     require base_path('views/' . $path);
 }
 
+/**
+ * Redirect to a route path
+ */
+function redirect(string $path)
+{
+    header("location: {$path}");
+
+    exit();
+}

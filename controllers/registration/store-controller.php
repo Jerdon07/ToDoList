@@ -53,5 +53,4 @@ $_SESSION['user'] = [
     'name' => $name,
 ];
 
-header('location: /');
-exit();
+redirect('/');

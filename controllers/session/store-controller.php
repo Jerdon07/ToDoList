@@ -14,15 +14,13 @@ $request = new LoginRequest;
 
 /* Validate the request */
 if (! $request->validate($email, $password)) {
-    return view('session/create.view.php', [
+    view('session/create.view.php', [
         'heading' => 'Log In',
         'errors' => $request->errors(),
     ]);
 
     exit();
 };
-
-$db = App::resolve(Database::class);
 
 $auth = new Auth();
 
@@ -35,6 +33,4 @@ if (! $auth->handle($email, $password)) {
     ]);
 }
 
-header('location: /');
-
-exit();
+redirect('/');
