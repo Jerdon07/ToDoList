@@ -21,14 +21,13 @@ if (! $request->validate($name, $price, $quantity)) {
     exit();
 }
 
-$current_user = 18;
 $db->query(
     "INSERT INTO products(name, price, quantity, user_id) VALUES(:name, :price, :quantity, :user_id)",
     [
         ":name" => $name,
         ":price" => $price,
         ":quantity" => $quantity,
-        ":user_id" => $current_user,
+        ":user_id" => $_SESSION['user']['id'],
     ]
 );
 
