@@ -22,8 +22,6 @@ if (! $request->validate($email, $password)) {
 
 $auth = new Auth();
 
-
-
 if (! $auth->handle($email, $password)) {
     return view('session/create.view.php', [
         'heading' => 'Login',
