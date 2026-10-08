@@ -13,22 +13,23 @@ $quantity = $_POST['quantity'];
 $request = new ProductRequest;
 
 if (! $request->validate($name, $price, $quantity)) {
-    view('products/create.view.php', [
-        'heading' => 'Add a Product',
-        'errors' => $request->errors(),
-    ]);
+    $_SESSION['flash']['old'] = [
+        'name' => $name,
+        'price' => $price,
+        'quantity' => $quantity,
+    ];
 
-    exit();
+    $_SESSION['flash']['errors'] = $request->errors();
+
+    redirect('/products/create');
 }
 
 $db->query(
-    "INSERT INTO products(name, price, quantity, user_id) VALUES(:name, :price, :quantity, :user_id)",
-    [
+    "INSERT INTO products(name, price, quantity, user_id) VALUES(:name, :price, :quantity, :user_id)", [
         ":name" => $name,
         ":price" => $price,
         ":quantity" => $quantity,
         ":user_id" => $_SESSION['user']['id'],
-    ]
-);
+]);
 
 redirect('/products');

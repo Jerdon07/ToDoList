@@ -18,7 +18,7 @@
                         name="name" 
                         type="text"
                         class="border rounded-sm pl-2"
-                        value="<?= $_POST['name'] ?? '' ?>"
+                        value="<?= $product['name'] ?? '' ?>"
                     >
                     <?php if(isset($errors['name'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['name'] ?></p>
@@ -38,7 +38,7 @@
                             name="price" 
                             id="price"
                             class="border rounded-sm"
-                            value="<?= $_POST['price'] ?? '' ?>"
+                            value="<?= $product['price'] ?? '' ?>"
                         >
                         <?php if(isset($errors['price'])) : ?>
                             <p class="text-xs text-red-500 font-semibold"><?= $errors['price'] ?></p>
@@ -55,18 +55,18 @@
                             name="quantity" 
                             id="quantity"
                             class="border rounded-sm"
-                            value="<?= $_POST['quantity'] ?? '' ?>"
+                            value="<?= $product['quantity'] ?? '' ?>"
                         >
                         <?php if(isset($errors['quantity'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['quantity'] ?></p>
                         <?php endif ?>
                     </div>
                 </div>
-                
+
                 <!-- Submit Button -->
-                 <div class="flex w-full h-fit items-end justify-end">
-                     <input type="submit" value="Add Product" class="bg-purple-500 py-2 px-5 rounded-full text-white hover:bg-purple-700">
-                 </div>
+                <div class="flex w-full h-fit items-end justify-end">
+                    <input type="submit" value="Add Product" class="bg-purple-500 py-2 px-5 rounded-full text-white hover:bg-purple-700">
+                </div>
             </form>
         </div>
     </div>

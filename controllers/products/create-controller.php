@@ -2,5 +2,6 @@
 
 view('products/create.view.php', [
     'heading' => 'Add a Product',
-    'errors' => [],
+    'product' => $_SESSION['flash']['old'] ?? [],
+    'errors' => $_SESSION['flash']['errors'] ?? [],
 ]);
