@@ -5,18 +5,14 @@ use util\App;
 use util\Database;
 use util\Response;
 
-$db = App::resolve(Database::class);
+authorize($_POST['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
 
 $id = $_POST['id'];
 $name = $_POST['name'];
 $price = $_POST['price'];
 $quantity = $_POST['quantity'];
 
-if (! $id) {
-    abort(Response::NOT_FOUND);
-}
-
-authorize($_POST['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
+$db = App::resolve(Database::class);
 
 $product = $db->query("SELECT * FROM products WHERE id = :id", [
     ':id' => $id,
@@ -26,11 +22,16 @@ $request = new ProductRequest;
 
 if (! $request->validate($name, $price, $quantity)) {
 
-    return view('products/edit.view.php', [
-        'heading' => 'Edit Product',
-        'product' => $product,
-        'errors' => $request->errors(),
-    ]);
+    $_SESSION['flash']['old'] = [
+        'id' => $id,
+        'name' => $name,
+        'price' => $price,
+        'quantity' => $quantity
+    ];
+
+    $_SESSION['flash']['errors'] = $request->errors();
+
+    redirect('/product/edit');
 }
 
 $product = $db->query(

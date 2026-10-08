@@ -9,9 +9,9 @@
 
                 <input type="hidden" name="_method" value="PUT">
 
-                <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                <input type="hidden" name="id" value="<?= $product['id'] ?? [] ?>">
 
-                <input type="hidden" name="user_id" value="<?= $product['user_id'] ?>">
+                <input type="hidden" name="user_id" value="<?= $product['user_id'] ?? [] ?>">
 
                 <!-- Name -->
                 <div class="flex flex-col">
@@ -24,7 +24,7 @@
                         name="name" 
                         type="text"
                         class="border rounded-sm pl-2"
-                        value="<?= $product['name'] ?>"
+                        value="<?= $product['name'] ?? [] ?>"
                     >
                     <?php if(isset($errors['name'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['name'] ?></p>
