@@ -15,12 +15,15 @@ $request = new RegistrationRequest;
 
 /* Validate the request */
 if (! $request->validate($name, $email, $password)) {
-    view('registration/create.view.php', [
-        'heading' => 'Register',
-        'errors' => $request->errors(),
-    ]);
 
-    die();
+    $_SESSION['flash']['old'] = [
+        'name' => $name,
+        'email' => $email,
+    ];
+
+    $_SESSION['flash']['errors'] = $request->errors();
+
+    redirect('/register');
 }
 
 $db = App::resolve(Database::class);
@@ -36,12 +39,14 @@ $existing_user = $db->query(
 if ($existing_user) {
     $request->error('email', 'An account with this email already exists.');
 
-    view('registration/create.view.php', [
-        'heading' => 'Register',
-        'error' => $request->errors(),
-    ]);
+    $_SESSION['flash']['old'] = [
+        'name' => $name,
+        'email' => $email,
+    ];
 
-    die();
+    $_SESSION['flash']['errors'] = $request->errors();
+
+    redirect('/register');
 }
 
 /* Save the POST request to the database */

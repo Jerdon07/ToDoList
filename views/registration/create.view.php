@@ -18,8 +18,9 @@
                         name="name" 
                         type="text"
                         class="border rounded-sm pl-2"
-                        value="<?= $_POST['name'] ?? '' ?>"
+                        value="<?= $data['name'] ?? '' ?>"
                     >
+
                     <?php if(isset($errors['name'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['name'] ?></p>
                     <?php endif ?>
@@ -38,7 +39,7 @@
                             name="email" 
                             id="email"
                             class="border rounded-sm"
-                            value="<?= $_POST['email'] ?? '' ?>"
+                            value="<?= $data['email'] ?? '' ?>"
                         >
                         <?php if(isset($errors['email'])) : ?>
                             <p class="text-xs text-red-500 font-semibold"><?= $errors['email'] ?></p>
@@ -55,7 +56,6 @@
                             name="password" 
                             id="password"
                             class="border rounded-sm"
-                            value="<?= $_POST['password'] ?? '' ?>"
                         >
                         <?php if(isset($errors['password'])) : ?>
                         <p class="text-xs text-red-500 font-semibold"><?= $errors['password'] ?></p>
