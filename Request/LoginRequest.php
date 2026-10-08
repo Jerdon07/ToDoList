@@ -31,4 +31,9 @@ class LoginRequest
     {
         return $this->errors;
     }
+
+    public function error(string $field, string $message)
+    {
+        $this->errors[$field] = $message;
+    }
 }

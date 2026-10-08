@@ -11,22 +11,16 @@ $errors = [];
 $request = new LoginRequest;
 
 /* Validate the request */
-if (! $request->validate($email, $password)) {
-    view('session/create.view.php', [
-        'heading' => 'Log In',
-        'errors' => $request->errors(),
-    ]);
+if ($request->validate($email, $password)) {
+    
+    /* Authenticate the user */
+    if ((new Auth)->handle($email, $password)) redirect('/');
 
-    exit();
-};
-
-$auth = new Auth();
-
-if (! $auth->handle($email, $password)) {
-    return view('session/create.view.php', [
-        'heading' => 'Login',
-        'errors' => ['email' => 'No matching account for that email address and password.']
-    ]);
+    $request->error('email', 'No matching account for that email address and password.');
 }
 
-redirect('/');
+/* Throw an error */
+return view('session/create.view.php', [
+    'heading' => 'Login',
+    'errors' => $request->errors()
+]);
