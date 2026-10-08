@@ -1,5 +1,6 @@
 <?php
 
 view('session/create.view.php', [
-    'heading' => 'Login'
+    'heading' => 'Login',
+    'errors' => $_SESSION['flash']['errors'] ?? []
 ]);
