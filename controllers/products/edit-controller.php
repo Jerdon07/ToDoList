@@ -3,6 +3,7 @@
 use util\App;
 use util\Database;
 use util\Response;
+use util\Session;
 
 $db = App::resolve(Database::class);
 
@@ -15,6 +16,6 @@ authorize($product['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
 
 view('products/edit.view.php', [
     'heading' => $product['name'],
-    'product' => $_SESSION['flash']['old'] ?? $product,
-    'errors' => $_SESSION['flash']['errors'] ?? [],
+    'product' => Session::get('old', $product),
+    'errors' => Session::get('errors'),
 ]);

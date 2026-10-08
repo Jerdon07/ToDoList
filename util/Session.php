@@ -25,7 +25,7 @@ class Session
      */
     public static function get(string $key, $default = null)
     {
-        return $_SESSION[$key] ?? $default;
+        return $_SESSION['flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
 
     public static function flash(string $key, array $value)

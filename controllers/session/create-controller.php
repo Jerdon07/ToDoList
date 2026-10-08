@@ -1,7 +1,9 @@
 <?php
 
+use util\Session;
+
 view('session/create.view.php', [
     'heading' => 'Login',
-    'data' => $_SESSION['flash']['old'] ?? [],
-    'errors' => $_SESSION['flash']['errors'] ?? []
+    'data' => Session::get('old'),
+    'errors' => Session::get('errors'),
 ]);
