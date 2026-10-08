@@ -16,11 +16,11 @@
                             Email <span class="text-red-500">*</span>
                         </label>
                         <input 
-                            type="email" 
-                            name="email" 
+                            type="email"
+                            name="email"
                             id="email"
                             class="border rounded-sm"
-                            value="<?= $_POST['email'] ?? '' ?>"
+                            value="<?= $data['email'] ?? '' ?>"
                         >
                         <?php if(isset($errors['email'])) : ?>
                             <p class="text-xs text-red-500 font-semibold"><?= $errors['email'] ?></p>

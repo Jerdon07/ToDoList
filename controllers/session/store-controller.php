@@ -17,6 +17,10 @@ if ($request->validate($email, $password)) {
     $request->error('email', 'No matching account for that email address and password.');
 }
 
+$_SESSION['flash']['old'] = [
+    'email' => $email
+];
+
 $_SESSION['flash']['errors'] = $request->errors();
 
 redirect('/login');
