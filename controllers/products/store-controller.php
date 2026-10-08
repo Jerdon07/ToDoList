@@ -3,6 +3,7 @@
 use Request\ProductRequest;
 use util\App;
 use util\Database;
+use util\Session;
 
 $db = App::resolve(Database::class);
 
@@ -13,13 +14,13 @@ $quantity = $_POST['quantity'];
 $request = new ProductRequest;
 
 if (! $request->validate($name, $price, $quantity)) {
-    $_SESSION['flash']['old'] = [
+    Session::flash('old', [
         'name' => $name,
         'price' => $price,
         'quantity' => $quantity,
-    ];
+    ]);
 
-    $_SESSION['flash']['errors'] = $request->errors();
+    Session::flash('errors', $request->errors());
 
     redirect('/products/create');
 }

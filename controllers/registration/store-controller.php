@@ -4,6 +4,7 @@ use Request\RegistrationRequest;
 use util\App;
 use util\Auth;
 use util\Database;
+use util\Session;
 
 $name = $_POST['name'];
 $email = $_POST['email'];
@@ -16,12 +17,7 @@ $request = new RegistrationRequest;
 /* Validate the request */
 if (! $request->validate($name, $email, $password)) {
 
-    $_SESSION['flash']['old'] = [
-        'name' => $name,
-        'email' => $email,
-    ];
-
-    $_SESSION['flash']['errors'] = $request->errors();
+    Session::flash('errors', $request->errors());
 
     redirect('/register');
 }
@@ -39,12 +35,12 @@ $existing_user = $db->query(
 if ($existing_user) {
     $request->error('email', 'An account with this email already exists.');
 
-    $_SESSION['flash']['old'] = [
+    Session::flash('old', [
         'name' => $name,
         'email' => $email,
-    ];
+    ]);
 
-    $_SESSION['flash']['errors'] = $request->errors();
+    Session::flash('errors', $request->errors());
 
     redirect('/register');
 }

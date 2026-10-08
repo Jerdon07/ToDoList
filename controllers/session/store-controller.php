@@ -2,6 +2,7 @@
 
 use Request\LoginRequest;
 use util\Auth;
+use util\Session;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -17,10 +18,8 @@ if ($request->validate($email, $password)) {
     $request->error('email', 'No matching account for that email address and password.');
 }
 
-$_SESSION['flash']['old'] = [
-    'email' => $email
-];
+Session::flash('old', ['email' => $email]);
 
-$_SESSION['flash']['errors'] = $request->errors();
+Session::flash('errors', $request->errors());
 
 redirect('/login');

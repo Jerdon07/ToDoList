@@ -4,6 +4,7 @@ use Request\ProductRequest;
 use util\App;
 use util\Database;
 use util\Response;
+use util\Session;
 
 authorize($_POST['user_id'] == $_SESSION['user']['id'], Response::FORBIDDEN);
 
@@ -22,14 +23,14 @@ $request = new ProductRequest;
 
 if (! $request->validate($name, $price, $quantity)) {
 
-    $_SESSION['flash']['old'] = [
+    Session::flash('old', [
         'id' => $id,
         'name' => $name,
         'price' => $price,
         'quantity' => $quantity
-    ];
+    ]);
 
-    $_SESSION['flash']['errors'] = $request->errors();
+    Session::flash('errors', $request->errors());
 
     redirect('/product/edit');
 }
