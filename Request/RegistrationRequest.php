@@ -36,4 +36,12 @@ class RegistrationRequest
     {
         return $this->errors;
     }
+
+    /**
+     * Errors' setter function
+     */
+    public function error(string $field, string $message)
+    {
+        $this->errors[$field] = $message;
+    }
 }

@@ -25,29 +25,33 @@ if (! $request->validate($name, $email, $password)) {
 
 $db = App::resolve(Database::class);
 
+/* Check for existing user */
 $existing_user = $db->query(
     "SELECT * FROM users WHERE email = :email", [
         ':email' => $email,
     ]
 )->find();
 
+/* If exists, display an error and exit */
 if ($existing_user) {
-    $errors['email'] = 'An account with this email already exists.';
+    $request->error('email', 'An account with this email already exists.');
 
     view('registration/create.view.php', [
         'heading' => 'Register',
-        'error' => $errors,
+        'error' => $request->errors(),
     ]);
 
     die();
 }
 
+/* Save the POST request to the database */
 $db->query("INSERT INTO users(name, email, password) VALUES (:name, :email, :password)", [
     ':name' => $name,
     ':email' => $email,
     ':password' => password_hash($password, PASSWORD_BCRYPT),
 ]);
 
+/* Retrieve and log the user */
 $user = $db->query("SELECT * FROM users WHERE email = :email", [
     ":email" => $email
 ])->findOrFail();

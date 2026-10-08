@@ -6,8 +6,6 @@ use util\Auth;
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
-
 $request = new LoginRequest;
 
 /* Validate the request */
