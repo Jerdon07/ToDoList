@@ -1,8 +1,8 @@
-<?php view('partials/head.php') ?>
+<?php view('partials/head.php', ['script' => '/js/products/index.js']) ?>
 <?php view('partials/nav.php') ?>
 <?php require base_path('views/partials/banner.php') ?>
 
-<main>
+<main> 
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div class="h-12 w-full flex justify-end items-end">
             <!-- Create -->
@@ -21,4 +21,9 @@
         </ul>
     </div>
 </main>
+
+<dialog id="dialog" class="hidden">
+    <h2>Add Product</h2>
+    <p>Fill out the form to create a new product</p>
+</dialog>
 <?php view('partials/footer.php') ?>
