@@ -23,11 +23,14 @@ class Session
     /**
      * Get a value from the session
      */
-    public static function get(string $key, $default = null)
+    public static function get(string $key, $default = null): array|null
     {
         return $_SESSION['flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
 
+    /**
+     * Stores a value to the session
+     */
     public static function flash(string $key, array $value)
     {
         $_SESSION['flash'][$key] = $value;

@@ -17,8 +17,6 @@ $router->delete('/sessions', 'session/delete-controller.php')->only('auth');
 $router->get('/', 'index.php');
 
 $router->get('/products', 'products/index-controller.php')->only('auth');
-
-$router->get('/products/create', 'products/create-controller.php')->only('auth');
 $router->post('/products/create', 'products/store-controller.php')->only('auth');
 
 $router->get('/product', 'products/show-controller.php')->only('auth');
