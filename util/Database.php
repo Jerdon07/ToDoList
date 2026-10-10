@@ -68,4 +68,9 @@ class Database {
     {
         return $this->statement->fetchAll();
     }
+
+    public function lastInsertId(): string|false
+    {
+        return $this->connection->lastInsertId();
+    }
 }
